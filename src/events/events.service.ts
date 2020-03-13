@@ -6,15 +6,18 @@ import { Event } from './interfaces/event.interface';
 
 @Injectable()
 export class EventsService {
-  constructor(@InjectModel('Event') private readonly catModel: Model<Event>) {
+  constructor(
+    @InjectModel('Event') private readonly eventsModel: Model<Event>,
+  ) {
   }
 
   async create(createCatDto: CreateEventDto): Promise<Event> {
-    const createdCat = new this.catModel(createCatDto);
+    const createdCat = new this.eventsModel(createCatDto);
+    console.log(createCatDto);
     return createdCat.save();
   }
 
   async findAll(): Promise<Event[]> {
-    return this.catModel.find().exec();
+    return this.eventsModel.find().exec();
   }
 }
