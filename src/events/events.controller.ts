@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-event.dto';
 import { EventsService } from './events.service';
 import { Event } from './interfaces/event.interface';
@@ -6,7 +6,8 @@ import { Event } from './interfaces/event.interface';
 @Controller('events')
 export class EventsController {
 
-  constructor(private readonly eventsService: EventsService) {
+  constructor(private readonly eventsService: EventsService,
+  ) {
   }
 
   @Post()
@@ -33,4 +34,5 @@ export class EventsController {
   remove(@Param('id') id: string) {
     return `This action removes a #${id} cat`;
   }
+
 }
