@@ -6,9 +6,6 @@ export const EventSchema = new mongoose.Schema({
   startDate: Date, // ISO Date
   userName: String,
   language: String,
-  imageData: String,
+  image: String,
 });
-
-// https://hangouts.google.com/call/B1JC24NwIfcVoQyCSq00AEEI
-// https://join.skype.com/cJnfLxgVuWeN
 

@@ -10,6 +10,7 @@ export class GridFsMulterConfigService implements MulterOptionsFactory {
     this.gridFsStorage = new GridFsStorage({
       url: 'mongodb://localhost/cucuit-db',
       file: (req, file) => {
+        console.log(file);
         return new Promise((resolve, reject) => {
           const filename = file.originalname.trim();
           const fileInfo = {

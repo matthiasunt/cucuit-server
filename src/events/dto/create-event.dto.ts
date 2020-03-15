@@ -1,5 +1,8 @@
 export class CreateEventDto {
-  readonly date: Date;
-  readonly title: string;
-  readonly description: string;
+  readonly inviteUrl: string;
+  readonly topic: string;
+  readonly startDate: Date; // ISO Date
+  readonly userName: string;
+  readonly language: string;
+  readonly image: string;
 }

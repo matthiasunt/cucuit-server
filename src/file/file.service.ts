@@ -4,13 +4,15 @@ import { Connection } from 'mongoose';
 import { MongoGridFS } from 'mongo-gridfs';
 import { GridFSBucketReadStream } from 'mongodb';
 import { FileInfoVm } from './models/file-info-vm.model';
+import { DiskFile } from './models/disk-file';
 
 @Injectable()
 export class FileService {
+
   private fileModel: MongoGridFS;
 
   constructor(@InjectConnection() private readonly connection: Connection) {
-    this.fileModel = new MongoGridFS(this.connection.db, 'fs');
+    this.fileModel = new MongoGridFS(this.connection.db, 'images');
   }
 
   async readStream(id: string): Promise<GridFSBucketReadStream> {
