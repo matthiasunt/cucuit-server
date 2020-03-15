@@ -12,7 +12,7 @@ import { FileModule } from './file/file.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://localhost/cucuit-db',
+      `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@localhost/cucuit-db`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
