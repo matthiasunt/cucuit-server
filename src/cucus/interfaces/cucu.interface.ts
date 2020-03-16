@@ -6,5 +6,5 @@ export interface Cucu extends Document {
   readonly startDateString: string; // ISO Date
   readonly userName: string;
   readonly language: string;
-  readonly image: string;
+  readonly avatarId: string;
 }

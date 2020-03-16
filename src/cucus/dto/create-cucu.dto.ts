@@ -4,5 +4,5 @@ export class CreateCucuDto {
   readonly startDateString: string;
   readonly userName: string;
   readonly language: string;
-  readonly image: string;
+  readonly avatarId: string;
 }

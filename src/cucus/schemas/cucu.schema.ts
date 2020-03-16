@@ -6,6 +6,6 @@ export const CucuSchema = new mongoose.Schema({
   startDateString: String,
   userName: String,
   language: String,
-  image: String,
+  avatarId: String,
 });
 
