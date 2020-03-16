@@ -6,9 +6,6 @@ import { GridFsMulterConfigService } from '../multer-config/multer-config.servic
 
 @Module({
   imports: [
-    MulterModule.registerAsync({
-      useClass: GridFsMulterConfigService,
-    }),
   ],
   controllers: [
     FileController,

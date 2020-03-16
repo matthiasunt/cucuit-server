@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { MulterModuleOptions, MulterOptionsFactory } from '@nestjs/platform-express';
 import * as GridFsStorage from 'multer-gridfs-storage';
+import * as crypto from 'crypto';
+import * as path from 'path';
 
 require('dotenv').config({ path: '.env' });
 
@@ -15,17 +17,27 @@ export class GridFsMulterConfigService implements MulterOptionsFactory {
       url: this.db,
       options: { useUnifiedTopology: true },
       file: (req, file) => {
-        console.log(file);
         return new Promise((resolve, reject) => {
-          const filename = file.originalname.trim();
-          const fileInfo = {
-            filename: filename,
-          };
-          resolve(fileInfo);
+          crypto.randomBytes(16, (err, buf) => {
+            if (err) {
+              return reject(err);
+            }
+            if (file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png') {
+              reject({ status: 'error', message: 'Invalid image format' });
+            }
+
+            const filename = buf.toString('hex') + path.extname(file.originalname);
+            const fileInfo = {
+              filename: filename,
+              bucketName: 'images',
+            };
+            resolve(fileInfo);
+          });
         });
       },
     });
   }
+
 
   createMulterOptions(): MulterModuleOptions {
     return {

@@ -8,6 +8,9 @@ import { CucusService } from './cucus/cucus.service';
 import { FileService } from './file/file.service';
 import { FileController } from './file/file.controller';
 import { FileModule } from './file/file.module';
+import { GridFsMulterConfigService } from './multer-config/multer-config.service';
+import { MulterModule } from '@nestjs/platform-express';
+
 require('dotenv').config({ path: '.env' });
 
 @Module({
@@ -19,6 +22,9 @@ require('dotenv').config({ path: '.env' });
         useUnifiedTopology: true,
       },
     ),
+    MulterModule.registerAsync({
+      useClass: GridFsMulterConfigService,
+    }),
     FileModule,
     CucusModule,
   ],
