@@ -4,7 +4,6 @@ import { Connection } from 'mongoose';
 import { MongoGridFS } from 'mongo-gridfs';
 import { GridFSBucketReadStream } from 'mongodb';
 import { FileInfoVm } from './models/file-info-vm.model';
-import { DiskFile } from './models/disk-file';
 
 @Injectable()
 export class FileService {

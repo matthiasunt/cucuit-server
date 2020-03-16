@@ -1,23 +1,23 @@
 import { Body, Controller, Delete, Get, Param, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
-import { CreateEventDto } from './dto/create-event.dto';
-import { EventsService } from './events.service';
-import { Event } from './interfaces/event.interface';
+import { CreateCucuDto } from './dto/create-cucu.dto';
+import { CucusService } from './cucus.service';
+import { Cucu } from './interfaces/cucu.interface';
 
-@Controller('events')
-export class EventsController {
+@Controller('cucus')
+export class CucusController {
 
-  constructor(private readonly eventsService: EventsService,
+  constructor(private readonly cucusService: CucusService,
   ) {
   }
 
   @Post()
-  async create(@Body() createEventDto: CreateEventDto) {
-    return await this.eventsService.create(createEventDto);
+  async create(@Body() createCucuDto: CreateCucuDto) {
+    return await this.cucusService.create(createCucuDto);
   }
 
   @Get()
-  async findAll(): Promise<Event[]> {
-    return this.eventsService.findAll();
+  async findAll(): Promise<Cucu[]> {
+    return this.cucusService.findAll();
   }
 
   @Get(':id')

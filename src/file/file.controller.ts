@@ -15,7 +15,7 @@ import { FileService } from './file.service';
 import { ApiImplicitFile } from '@nestjs/swagger/dist/decorators/api-implicit-file.decorator';
 import { FileResponseVm } from './models/file-response-vm.model';
 
-@Controller('/attachment/file')
+@Controller('/upload/avatar')
 @ApiTags('Attachments')
 export class FileController {
   constructor(private fileService: FileService) {
@@ -24,8 +24,8 @@ export class FileController {
   @Post('')
   @ApiConsumes('multipart/form-data')
   @ApiImplicitFile({ name: 'file', required: true, description: 'Attachment Files' })
-  @UseInterceptors(FileInterceptor('file'))
-  upload(@UploadedFile() file) {
+  @UseInterceptors(FileInterceptor('file', { dest: 'images' }))
+  uploadFile(@UploadedFile() file) {
     const fileReponse = {
       originalname: file.originalname,
       encoding: file.encoding,

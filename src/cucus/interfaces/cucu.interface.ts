@@ -1,8 +1,9 @@
-export class CreateEventDto {
+import { Document } from 'mongoose';
+
+export interface Cucu extends Document {
   readonly inviteUrl: string;
   readonly topic: string;
-  readonly description: string;
-  readonly startDate: Date; // ISO Date
+  readonly startDateString: string; // ISO Date
   readonly userName: string;
   readonly language: string;
   readonly image: string;

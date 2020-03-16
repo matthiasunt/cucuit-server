@@ -1,10 +1,9 @@
 import * as mongoose from 'mongoose';
 
-export const EventSchema = new mongoose.Schema({
+export const CucuSchema = new mongoose.Schema({
   inviteUrl: String,
   topic: String,
-  description: String,
-  startDate: Date, // ISO Date
+  startDateString: String,
   userName: String,
   language: String,
   image: String,

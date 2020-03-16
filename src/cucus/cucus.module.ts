@@ -1,32 +1,32 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { EventsService } from './events.service';
-import { EventsController } from './events.controller';
-import { EventSchema } from './schemas/event.schema';
+import { CucusService } from './cucus.service';
+import { CucusController } from './cucus.controller';
+import { CucuSchema } from './schemas/cucu.schema';
 import { MulterModule } from '@nestjs/platform-express';
 import { GridFsMulterConfigService } from '../multer-config/multer-config.service';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: 'Event', schema: EventSchema },
+      { name: 'Cucu', schema: CucuSchema },
     ]),
     MulterModule.registerAsync({
       useClass: GridFsMulterConfigService,
     }),
   ],
   controllers: [
-    EventsController,
+    CucusController,
   ],
   providers: [
     GridFsMulterConfigService,
-    EventsService,
+    CucusService,
   ],
   exports: [
     MongooseModule.forFeature([
-      { name: 'Event', schema: EventSchema },
+      { name: 'Cucu', schema: CucuSchema },
     ]),
   ],
 })
-export class EventsModule {
+export class CucusModule {
 }
