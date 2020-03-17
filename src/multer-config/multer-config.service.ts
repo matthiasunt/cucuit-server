@@ -10,7 +10,8 @@ require('dotenv').config({ path: '.env' });
 export class GridFsMulterConfigService implements MulterOptionsFactory {
   gridFsStorage: GridFsStorage;
 
-  private db = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/cucuit-db`;
+  private db = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}
+  @127.0.0.1:27017/${process.env.ENVIRONMENT}-cucuit`;
 
   constructor() {
     this.gridFsStorage = new GridFsStorage({
