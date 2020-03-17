@@ -16,8 +16,7 @@ require('dotenv').config({ path: '.env' });
 @Module({
   imports: [
     MongooseModule.forRoot(
-      `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}
-      @127.0.0.1:27017/${process.env.ENVIRONMENT}-cucuit`,
+      `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/${process.env.ENVIRONMENT}-cucuit`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,

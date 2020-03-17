@@ -22,7 +22,7 @@ export class CucusController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return `This action returns a #${id} cat`;
+    return `This action returns a #${id} Cucu`;
   }
 
   // @Put(':id')
@@ -32,7 +32,7 @@ export class CucusController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return `This action removes a #${id} cat`;
+    return `This action removes a #${id} Cucu`;
   }
 
 }
