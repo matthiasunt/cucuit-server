@@ -1,4 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+} from '@nestjs/common';
 import { CreateCucuDto } from './dto/create-cucu.dto';
 import { CucusService } from './cucus.service';
 import { Cucu } from './interfaces/cucu.interface';
@@ -10,14 +16,19 @@ export class CucusController {
   ) {
   }
 
-  @Post()
-  async create(@Body() createCucuDto: CreateCucuDto) {
-    return await this.cucusService.create(createCucuDto);
-  }
-
   @Get()
   async findAll(): Promise<Cucu[]> {
     return this.cucusService.findAll();
+  }
+
+  @Get(':lang/after/:date')
+  async findUpcomingByLanguage(@Param('lang') lang: string, @Param('date') date: string): Promise<Cucu[]> {
+    return this.cucusService.findByLanguageAndDate(lang, date);
+  }
+
+  @Get('after/:date')
+  async findByDate(@Param('date') date: string): Promise<Cucu[]> {
+    return this.cucusService.findByDate(date);
   }
 
   @Get(':id')
@@ -25,14 +36,14 @@ export class CucusController {
     return `This action returns a #${id} Cucu`;
   }
 
-  // @Put(':id')
-  // update(@Param('id') id: string, @Body() updateCatDto: UpdateCatDto) {
-  //   return `This action updates a #${id} cat`;
-  // }
+  @Get(':id/click')
+  updateOne(@Param('id') id: string) {
+    return this.cucusService.incrementClickCounter(id);
+  }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return `This action removes a #${id} Cucu`;
+  @Post()
+  async create(@Body() createCucuDto: CreateCucuDto) {
+    return await this.cucusService.create(createCucuDto);
   }
 
 }

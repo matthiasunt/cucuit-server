@@ -5,4 +5,5 @@ export class CreateCucuDto {
   readonly userName: string;
   readonly language: string;
   readonly avatarId: string;
+  clickCounter: number;
 }

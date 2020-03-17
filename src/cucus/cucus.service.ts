@@ -7,12 +7,12 @@ import { Cucu } from './interfaces/cucu.interface';
 @Injectable()
 export class CucusService {
   constructor(
-    @InjectModel('Cucu') private readonly cucusModel: Model<Cucu>,
+    @InjectModel('Cucu') private readonly cucuModel: Model<Cucu>,
   ) {
   }
 
   async create(createCucuDto: CreateCucuDto): Promise<any> {
-    const createdCucu = new this.cucusModel(createCucuDto);
+    const createdCucu = new this.cucuModel(createCucuDto);
     if (createdCucu.inviteUrl.includes('hangouts.google.com')
       || createdCucu.inviteUrl.includes('join.skype.com')
       || createdCucu.inviteUrl.includes('zoom.us')) {
@@ -23,11 +23,40 @@ export class CucusService {
         message: 'Invite url not valid',
       };
     }
+  }
 
-
+  async incrementClickCounter(id: string): Promise<Cucu> {
+    return this.cucuModel
+      .findByIdAndUpdate(
+        id, {
+          $inc: { clickCounter: 1 },
+        }, { new: true }).exec();
   }
 
   async findAll(): Promise<Cucu[]> {
-    return this.cucusModel.find().exec();
+    return this.cucuModel.find().exec();
+  }
+
+  async findByDate(date: string): Promise<Cucu[]> {
+    return this.cucuModel.find({
+      startDateString: {
+        $gte: new Date(date).toUTCString(),
+      },
+    }).limit(100)
+      .sort({ startDateString: 1 })
+      .exec();
+  }
+
+  async findByLanguageAndDate(lang: string, date: string): Promise<Cucu[]> {
+    return this.cucuModel.find({
+      language: {
+        $eq: lang,
+      },
+      startDateString: {
+        $gte: new Date(date).toUTCString(),
+      },
+    }).limit(100)
+      .sort({ startDateString: 1 })
+      .exec();
   }
 }

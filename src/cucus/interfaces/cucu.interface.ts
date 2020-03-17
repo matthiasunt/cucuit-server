@@ -7,4 +7,5 @@ export interface Cucu extends Document {
   readonly userName: string;
   readonly language: string;
   readonly avatarId: string;
+  readonly clickCounter: number;
 }

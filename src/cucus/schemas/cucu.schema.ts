@@ -7,5 +7,6 @@ export const CucuSchema = new mongoose.Schema({
   userName: String,
   language: String,
   avatarId: String,
+  clickCounter: Number,
 });
 
