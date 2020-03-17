@@ -15,7 +15,7 @@ import { FileService } from './file.service';
 import { ApiImplicitFile } from '@nestjs/swagger/dist/decorators/api-implicit-file.decorator';
 import { FileResponseVm } from './models/file-response-vm.model';
 
-@Controller('/upload/avatar')
+@Controller('/images')
 @ApiTags('Attachments')
 export class FileController {
   constructor(private fileService: FileService) {

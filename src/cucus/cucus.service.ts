@@ -11,9 +11,6 @@ export class CucusService {
   ) {
   }
 
-// https://hangouts.google.com/call/B1JC24NwIfcVoQyCSq00AEEI
-// https://join.skype.com/cJnfLxgVuWeN
-
   async create(createCucuDto: CreateCucuDto): Promise<any> {
     const createdCucu = new this.cucusModel(createCucuDto);
     if (createdCucu.inviteUrl.includes('hangouts.google.com')
