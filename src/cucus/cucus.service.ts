@@ -15,7 +15,9 @@ export class CucusService {
     const createdCucu = new this.cucuModel(createCucuDto);
     if (createdCucu.inviteUrl.includes('hangouts.google.com')
       || createdCucu.inviteUrl.includes('join.skype.com')
+      || createdCucu.inviteUrl.includes('meet.jit.si')
       || createdCucu.inviteUrl.includes('zoom.us')) {
+      createdCucu.createdDate = new Date();
       return createdCucu.save();
     } else {
       return {
@@ -39,11 +41,12 @@ export class CucusService {
 
   async findByDate(date: string): Promise<Cucu[]> {
     return this.cucuModel.find({
-      startDateString: {
-        $gte: new Date(date).toUTCString(),
+      startDate: {
+        $gte: new Date(date),
       },
-    }).limit(100)
-      .sort({ startDateString: 1 })
+    })
+      .sort({ startDate: 1 })
+      .limit(100)
       .exec();
   }
 
@@ -52,11 +55,11 @@ export class CucusService {
       language: {
         $eq: lang,
       },
-      startDateString: {
-        $gte: new Date(date).toUTCString(),
+      startDate: {
+        $gte: new Date(date),
       },
-    }).limit(100)
-      .sort({ startDateString: 1 })
+    }).sort({ startDate: 1 })
+      .limit(100)
       .exec();
   }
 }
