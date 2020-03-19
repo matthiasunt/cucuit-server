@@ -25,7 +25,10 @@ export class FileController {
   @ApiConsumes('multipart/form-data')
   @ApiImplicitFile({ name: 'file', required: true, description: 'Attachment Files' })
   @UseInterceptors(FileInterceptor('file', {
-    limits: {},
+    limits: {
+      fileSize: 1024 * 1024,
+      files: 1,
+    },
   }))
   uploadFile(@UploadedFile() file) {
     const fileReponse = {

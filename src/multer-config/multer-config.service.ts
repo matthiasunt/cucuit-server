@@ -24,7 +24,7 @@ export class GridFsMulterConfigService implements MulterOptionsFactory {
               return reject(err);
             }
             if (file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png') {
-              reject({ status: 'error', message: 'Invalid image format' });
+              reject({ status: 'error', code: 1, message: 'Invalid image format' });
             }
 
             const filename = buf.toString('hex') + path.extname(file.originalname);
