@@ -26,7 +26,7 @@ export class FileController {
   @ApiImplicitFile({ name: 'file', required: true, description: 'Attachment Files' })
   @UseInterceptors(FileInterceptor('file', {
     limits: {
-      fileSize: 1024 * 1024,
+      fileSize: 1024 * 1024 * 3, // 3MB
       files: 1,
     },
   }))
