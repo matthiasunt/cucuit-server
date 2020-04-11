@@ -33,7 +33,7 @@ export class CucusController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return `This action returns a #${id} Cucu`;
+    return this.cucusService.getCucu(id);
   }
 
   @Get(':id/click')

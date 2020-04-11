@@ -1,8 +1,9 @@
-import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Model, Schema, Types } from 'mongoose';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateCucuDto } from './dto/create-cucu.dto';
 import { Cucu } from './interfaces/cucu.interface';
+import { Http2ServerResponse } from 'http2';
 
 @Injectable()
 export class CucusService {
@@ -24,6 +25,14 @@ export class CucusService {
         status: 'error',
         message: 'Invite url not valid',
       };
+    }
+  }
+
+  async getCucu(id: string): Promise<Cucu | HttpStatus> {
+    if (id && id.length === 24) {
+      return this.cucuModel.findById(id).exec();
+    } else {
+      return HttpStatus.NOT_FOUND;
     }
   }
 
