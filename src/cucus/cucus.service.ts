@@ -40,9 +40,9 @@ export class CucusService {
     }).exec();
   }
 
-  async findAll(): Promise<Cucu[]> {
-    return this.cucuModel.find().exec();
-  }
+  // async findAll(): Promise<Cucu[]> {
+  //   return this.cucuModel.find().exec();
+  // }
 
   async getCucu(id: string): Promise<Cucu | HttpStatus> {
     if (id && id.length === 24) {
