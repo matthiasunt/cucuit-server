@@ -11,4 +11,5 @@ export interface Cucu extends Document {
   readonly language: string;
   readonly avatarId: string;
   clickCounter: number;
+  readonly uid: string;
 }

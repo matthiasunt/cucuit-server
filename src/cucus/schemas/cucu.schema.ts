@@ -11,5 +11,13 @@ export const CucuSchema = new mongoose.Schema({
   language: String,
   avatarId: String,
   clickCounter: Number,
+  uid: String,
 });
+
+// Hide uid
+// CucuSchema.methods.toJSON = () => {
+//   const cucu = this.toObject();
+//   delete cucu.uid;
+//   return cucu;
+// };
 

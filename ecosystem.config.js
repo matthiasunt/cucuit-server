@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'cucuit-server',
+      name: 'cs-b',
       script: 'npm run build && npm run start:prod',
     },
   ],
