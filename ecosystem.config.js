@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'cs-b',
+      name: 'cs',
       script: 'npm run build && npm run start:prod',
     },
   ],
