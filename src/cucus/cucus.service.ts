@@ -15,7 +15,7 @@ export class CucusService {
 
   async create(createCucuDto: CreateCucuDto): Promise<any> {
     const createdCucu = new this.cucuModel(createCucuDto);
-    if (createdCucu.inviteUrl.includes('hangouts.google.com')
+    if (createdCucu.inviteUrl.includes('google.com')
       || createdCucu.inviteUrl.includes('join.skype.com')
       || createdCucu.inviteUrl.includes('meet.jit.si')
       || createdCucu.inviteUrl.includes('zoom.us')) {
