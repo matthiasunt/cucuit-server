@@ -22,6 +22,7 @@ export class CucusService {
       createdCucu.createdDate = new Date();
       return createdCucu.save();
     } else {
+      console.error(`Invalid Invite Url: ${createdCucu.inviteUrl}`);
       return {
         status: 'error',
         message: 'Invite url not valid',
