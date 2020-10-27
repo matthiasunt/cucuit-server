@@ -1,9 +1,8 @@
-import { Model, Schema, Types } from 'mongoose';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateCucuDto } from './dto/create-cucu.dto';
 import { Cucu } from './interfaces/cucu.interface';
-import { Http2ServerResponse } from 'http2';
 import { DeleteCucuDto } from './dto/delete-cucu.dto';
 
 @Injectable()
@@ -15,13 +14,14 @@ export class CucusService {
 
   async create(createCucuDto: CreateCucuDto): Promise<any> {
     const createdCucu = new this.cucuModel(createCucuDto);
-    if (createdCucu.inviteUrl.includes('hangouts.google.com')
-      || createdCucu.inviteUrl.includes('join.skype.com')
-      || createdCucu.inviteUrl.includes('meet.jit.si')
-      || createdCucu.inviteUrl.includes('zoom.us')) {
+    if (createdCucu.inviteUrl.includes('google')
+      || createdCucu.inviteUrl.includes('skype')
+      || createdCucu.inviteUrl.includes('jit')
+      || createdCucu.inviteUrl.includes('zoom')) {
       createdCucu.createdDate = new Date();
       return createdCucu.save();
     } else {
+      console.error(`Invalid Invite Url: ${createdCucu.inviteUrl}`);
       return {
         status: 'error',
         message: 'Invite url not valid',
@@ -39,10 +39,6 @@ export class CucusService {
       },
     }).exec();
   }
-
-  // async findAll(): Promise<Cucu[]> {
-  //   return this.cucuModel.find().exec();
-  // }
 
   async getCucu(id: string): Promise<Cucu | HttpStatus> {
     if (id && id.length === 24) {
