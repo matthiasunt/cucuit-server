@@ -17,11 +17,6 @@ export class CucusController {
   ) {
   }
 
-  // @Get()
-  // async findAll(): Promise<Cucu[]> {
-  //   return this.cucusService.findAll();
-  // }
-
   @Get(':lang/after/:date')
   async findUpcomingByLanguage(@Param('lang') lang: string, @Param('date') date: string): Promise<Cucu[]> {
     return this.cucusService.findByLanguageAndDate(lang, date);
